@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, waitFor, screen} from "@testing-library/react";
+import { render, fireEvent, waitFor, screen } from "@testing-library/react";
 import LiveFootballScoreboard from "./LiveFootballScoreboard";
 
 describe("LiveFootballScoreboard component", () => {
@@ -50,15 +50,15 @@ describe("LiveFootballScoreboard component", () => {
 
   test("allows user to finish a match", () => {
     const { getByText, getByPlaceholderText, queryByText } = render(<LiveFootballScoreboard />);
-  
+
     // Start a match
     fireEvent.change(getByPlaceholderText("Home Team"), { target: { value: "Home Team" } });
     fireEvent.change(getByPlaceholderText("Away Team"), { target: { value: "Away Team" } });
     fireEvent.click(screen.getByTestId("start-match-button")); // Update to getByTestId
     fireEvent.click(getByText("Finish Match"));
-  
+
     // Check if the match is removed from the scoreboard
     expect(queryByText("Home Team 0 - 0 Away Team")).not.toBeInTheDocument();
-  });  
-  
+  });
+
 });
